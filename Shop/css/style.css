@@ -102,7 +102,7 @@ blockquote {
   color: #777;
 }
 
-.navbar-toggle .icon-bar {
+.navbar-toggler .icon-bar {
   background: #000;
 }
 
@@ -680,7 +680,7 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
   border-bottom: 1px solid #dedede;
 }
 
-.top-header .dropdown-menu {
+.top-header .search .dropdown-menu {
   left: auto;
   right: 0;
   max-width: 300px;
@@ -870,11 +870,6 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 .navigation .nav .open > a {
   border: 1px solid transparent;
   background-color: transparent;
-}
-
-.navigation .navbar-nav {
-  float: none;
-  display: inline-block;
 }
 
 .navigation .dropdown-slide .dropdown-menu {
