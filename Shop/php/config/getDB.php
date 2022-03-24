@@ -1,21 +1,25 @@
 <?php
-if (strpos(php_uname(), 'vtxhosting.ch') == true) {
-    include "prod.php";
-    echo "Using Prod";
-} else {
-    include "dev.php";
-    echo "Using Dev";
-}
+function getDB()
+{
+    if (strpos(php_uname(), 'vtxhosting.ch') == true) {
+        include 'prod.php';
+        echo "Using Prod";
+    } else {
+        include 'dev.php';
+        echo "Using Dev";
+    }
 
-try {
+    try {
 
-    $dblink = new PDO('mysql:host=localhost;dbname=' . $dbname, $dbuser, $dbpass);
+        $dblink = new PDO('mysql:host=localhost;dbname=' . $dbname, $dbuser, $dbpass);
 
-    echo 'Connection successfully';
+        echo 'Connection successfully';
+        return $dblink;
 
-} catch (PDOException $exception) {
+    } catch (PDOException $exception) {
 
-    echo 'Connection failed: ' . $exception->getMessage();
+        echo 'Connection failed: ' . $exception->getMessage();
 
+    }
 }
 ?>

@@ -1,3 +1,3 @@
 <?php
-echo file_get_contents('./menu.html')
+echo file_get_contents('php/components/menu/menu.html')
 ?>
