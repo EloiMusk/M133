@@ -894,6 +894,15 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
   color: #fff;
 }
 
+#productFormImagePreview.img-thumbnail:hover{
+  opacity: 0.7;
+  box-shadow: 0px 5px 15px -5px rgba(13, 110, 253, 0.61);
+  transition: .3s all;
+}
+#productFormImagePreview.img-thumbnail{
+  transition: 0.4s all;
+}
+
 .slider-item {
   text-align: center;
   background-size: cover;

@@ -5,7 +5,6 @@ function setMode(mode) {
     if (mode === "create") {
         document.getElementById("productFormTitle").innerText = "Add Product"
     }
-    console.log(this.mode)
 }
 
 function getFilename() {
@@ -22,20 +21,19 @@ function getFilename() {
 
 function submitForm() {
     const formData = $('#productForm')
-    console.log("Submitting this", formData.serialize() + "&image=" + getFilename())
+    var mode = this.mode
     $.ajax({
-        url: 'php/controller/product.php?action=' + this.mode,
+        url: 'php/controller/product.php?action=' + mode,
         type: 'post',
         data: formData.serialize() + "&image=" + getFilename(),
         success: function () {
-            alert("worked");
+            showToast('Sucess', 'Product ' + mode + 'ed!')
         }
     });
     if (document.getElementById('productFormImage').value !== '' || document.getElementById('productFormImage').value !== null) {
         var file_data = $('#productFormImage').prop('files')[0];
         var form_data = new FormData();
         form_data.append('image', file_data);
-        alert(form_data);
         $.ajax({
             url: 'php/controller/upload.php', // <-- point to server-side PHP script
             dataType: 'text',  // <-- what to expect back from the PHP script, if anything
@@ -44,10 +42,54 @@ function submitForm() {
             processData: false,
             data: form_data,
             type: 'post',
-            success: function (php_script_response) {
-                alert(php_script_response); // <-- display response from the PHP script, if any
+            success: function () {
+                showToast('Sucess', 'Product image uploaded!', 'bg-success')
             }
         });
+    }
+    ;
+
+
+}
+
+function setPreviewImage() {
+    var selectedFile = document.getElementById('productFormImage').files[0];
+    var reader = new FileReader();
+
+    var imgtag = document.getElementById("productFormImagePreview");
+    imgtag.title = selectedFile.name;
+
+    reader.onload = function (event) {
+        imgtag.src = event.target.result;
     };
+
+    reader.readAsDataURL(selectedFile);
+}
+
+function fileUpload() {
+    $('#productFormImage').click()
+}
+
+function showToast(title, body, type) {
+    var toastLiveExample = document.getElementById('toastTemplate')
+    toastLiveExample.className = type;
+    document.getElementById('toastTemplateTitle').innerText = title;
+    document.getElementById('toastTemplateBody').innerText = body;
+
+    var toast = new bootstrap.Toast(toastLiveExample)
+    toast.show()
+}
+
+function deleteProduct(id){
+    $.ajax({
+        url: 'php/controller/product.php?action=delete&id=' + id,
+        type: 'get',
+        success: function () {
+            showToast('Sucess', 'Product deleted!')
+        }
+    });
+}
+
+function editProduct(id){
 
 }
