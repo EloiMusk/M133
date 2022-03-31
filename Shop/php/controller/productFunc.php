@@ -31,14 +31,23 @@ function createProduct()
     $dblink->commit();
 }
 
-function deleteProduct($id) {
+function getAllCategory()
+{
     $dblink = getDB();
-    $dblink->beginTransaction();
-    $sql = 'DELETE FROM product WHERE id=?;';
+    $sql = "SELECT * FROM category";
+    $sth = $dblink->prepare($sql);
+    $sth->execute();
+    $result = $sth->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+function getProduct($id) {
+    $dblink = getDB();
+    $sql = 'SELECT * FROM product WHERE id=?;';
     $sth = $dblink->prepare($sql);
     $sth->execute(array($id));
-    $dblink->commit();
-
+    $result = $sth->fetch(PDO::FETCH_ASSOC);
+    return $result;
 }
 
 function getAllProducts(){
@@ -48,5 +57,21 @@ function getAllProducts(){
     $sth->execute();
     $allProducts = $sth->fetchAll();
     return $allProducts;
+}
+
+function deleteProduct($id)
+{
+    $dblink = getDB();
+    $sql = 'DELETE FROM product WHERE id=?;';
+    $sth = $dblink->prepare($sql);
+    $sth->execute(array($id));
+}
+
+function updateProduct($id, $name, $price, $description, $image, $category)
+{
+    $dblink = getDB();
+    $sql = 'UPDATE product SET name=?, price=?, description=?, image=?, categoryId=? WHERE id=?;';
+    $sth = $dblink->prepare($sql);
+    $sth->execute(array($name, $price, $description, $image, $category, $id));
 }
 ?>

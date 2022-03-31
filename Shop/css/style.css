@@ -889,6 +889,19 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
   transition: .3s all;
 }
 
+svg g{
+  transform: scale(0.75);
+}
+
+svg{
+  overflow: visible;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+
 .navigation .dropdown-slide .dropdown-menu li a:hover {
   background-color: #000;
   color: #fff;
