@@ -1,3 +1,7 @@
 <?php
-echo file_get_contents('php/components/menu/menu.html')
+if (isset($_REQUEST['logout']) && $_REQUEST['logout'] == 1) {
+    session_destroy();
+    header('Location: /index.php');
+}
+include ($_SERVER["DOCUMENT_ROOT"].'/php/components/menu/menu-html.php');
 ?>

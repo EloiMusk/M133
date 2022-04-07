@@ -1,18 +1,14 @@
-<!-- 
-THEME: Aviato | E-commerce template
-VERSION: 1.0.0
-AUTHOR: Themefisher
-
-HOMEPAGE: https://themefisher.com/products/aviato-e-commerce-template/
-DEMO: https://demo.themefisher.com/aviato/
-GITHUB: https://github.com/themefisher/Aviato-E-Commerce-Template/
-
-WEBSITE: https://themefisher.com
-TWITTER: https://twitter.com/themefisher
-FACEBOOK: https://www.facebook.com/themefisher
--->
-
-
+<?php
+session_start();
+if (isset($_GET['redirect'])) {
+    $redirect = $_GET['redirect'];
+} else {
+    $redirect = '/index.php';
+}
+if (isset($_SESSION['user'])) {
+    header('Location: ' . $redirect);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +16,7 @@ FACEBOOK: https://www.facebook.com/themefisher
   <!-- Basic Page Needs
   ================================================== -->
   <meta charset="utf-8">
-  <title>Aviato | E-commerce template</title>
+  <title>Bricks | Login</title>
 
   <!-- Mobile Specific Metas
   ================================================== -->
@@ -56,32 +52,24 @@ FACEBOOK: https://www.facebook.com/themefisher
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
         <div class="block text-center">
-          <a class="logo" href="index.html">
+          <a class="logo" href="index.php">
             <img src="images/logo.png" alt="">
           </a>
-          <h2 class="text-center">Create Your Account</h2>
-          <form class="text-left clearfix" action="index.html">
+          <h2 class="text-center">Welcome Back</h2>
+          <form class="text-left clearfix" method="post" action="php/controller/user.php" >
             <div class="form-group">
-              <input type="text" class="form-control"  placeholder="First Name">
+              <input type="text" name="username" class="form-control"  placeholder="Username">
             </div>
             <div class="form-group">
-              <input type="text" class="form-control"  placeholder="Last Name">
+              <input type="password" name="password" class="form-control" placeholder="Password">
             </div>
-            <div class="form-group">
-              <input type="text" class="form-control"  placeholder="Username">
-            </div>
-            <div class="form-group">
-              <input type="email" class="form-control"  placeholder="Email">
-            </div>
-            <div class="form-group">
-              <input type="password" class="form-control"  placeholder="Password">
-            </div>
+              <input type="hidden" name="act" value="login">
+              <input type="hidden" name="redirect" value="<?php echo $redirect?>" >
             <div class="text-center">
-              <button type="submit" class="btn btn-main text-center">Sign In</button>
+              <button type="submit" class="btn btn-main text-center" >Login</button>
             </div>
           </form>
-          <p class="mt-20">Already hava an account ?<a href="login.html"> Login</a></p>
-          <p><a href="forget-password.html"> Forgot your password?</a></p>
+          <p class="mt-20">New in this site ?<a href="signin.php"> Create New Account</a></p>
         </div>
       </div>
     </div>

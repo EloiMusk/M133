@@ -1,7 +1,15 @@
+<?php
+session_start();
+//if use is not authenticated go to login page
+if(!isset($_SESSION['user'])){
+    header("Location: /login.php?redirect=/manage-products.php");
+}elseif(!$_SESSION['user']['role'] == 1){
+    header("location: /index.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <!-- Basic Page Needs
     ================================================== -->
     <meta charset="utf-8">
@@ -57,9 +65,10 @@ $categories = getAllCategory();
                         <div id="uploadContainer" class="d-flex align-items-center  justify-content-center flex-column"
                              onclick="fileUpload()">
                             <image id="productFormImagePreview" class="img-fluid" src="" alt="">
-                            <svg id="uploadSvg" preserveAspectRatio="xMidYMid meet" class="p-lg-3" width="100%" height="100%" viewBox=" 0 0 400 400" >
-                                <g id="icon1">
-                                    <path style="fill:#3C92CA;" id="XMLID_10_" d="M105.604,105.605L150,61.212v183.786c0,8.284,6.716,15,15,15s15-6.716,15-15V61.213l44.392,44.392
+                                <svg id="uploadSvg" preserveAspectRatio="xMidYMid meet" class="p-lg-3" width="100%"
+                                     height="100%" viewBox=" 0 0 400 400">
+                                    <g id="icon1">
+                                        <path style="fill:#3C92CA;" id="XMLID_10_" d="M105.604,105.605L150,61.212v183.786c0,8.284,6.716,15,15,15s15-6.716,15-15V61.213l44.392,44.392
 		c2.929,2.929,6.768,4.394,10.606,4.394c3.839,0,7.678-1.464,10.607-4.394c5.858-5.858,5.858-15.355,0-21.213l-69.995-69.996
 		c-0.352-0.351-0.721-0.683-1.104-0.998c-0.166-0.136-0.341-0.254-0.51-0.381c-0.222-0.167-0.439-0.337-0.67-0.492
 		c-0.207-0.139-0.422-0.259-0.635-0.386c-0.207-0.125-0.41-0.254-0.624-0.369c-0.217-0.116-0.439-0.213-0.661-0.318
@@ -73,17 +82,17 @@ $categories = getAllCategory();
 		c-0.217,0.145-0.42,0.307-0.629,0.462c-0.184,0.137-0.371,0.264-0.549,0.411c-0.365,0.299-0.714,0.616-1.049,0.947
 		c-0.016,0.016-0.033,0.029-0.05,0.045L84.392,84.391c-5.857,5.858-5.858,15.355,0,21.213
 		C90.249,111.463,99.747,111.461,105.604,105.605z"/>
-                                    <path style="fill:#2C2F33;" id="XMLID_11_" d="M315,160c-8.284,0-15,6.716-15,15v115H30V175c0-8.284-6.716-15-15-15s-15,6.716-15,15v130
+                                        <path style="fill:#2C2F33;" id="XMLID_11_" d="M315,160c-8.284,0-15,6.716-15,15v115H30V175c0-8.284-6.716-15-15-15s-15,6.716-15,15v130
 		c0,8.284,6.716,15,15,15h300c8.284,0,15-6.716,15-15V175C330,166.716,323.284,160,315,160z"/>
-                                </g>
-                                <g id="icon2" >
-                                    <path style="fill:#3C92CA;" d="M244.7,489.4c5.5,0,9.9-4.4,9.9-9.9V119.4l73.9,73.9c3.9,3.9,10.1,3.9,14,0s3.9-10.1,0-14
+                                    </g>
+                                    <g id="icon2">
+                                        <path style="fill:#3C92CA;" d="M244.7,489.4c5.5,0,9.9-4.4,9.9-9.9V119.4l73.9,73.9c3.9,3.9,10.1,3.9,14,0s3.9-10.1,0-14
 			l-90.8-90.8c-1.9-1.9-4.5-2.9-7-2.9s-5.1,1-7,2.9l-90.8,90.8c-3.9,3.9-3.9,10.1,0,14s10.1,3.9,14,0l73.9-73.9v360.1
 			C234.8,485,239.2,489.4,244.7,489.4z"/>
-                                    <path style="fill:#2C2F33;" d="M450.7,122.5c5.5,0,9.9-4.4,9.9-9.9V9.9c0-5.5-4.4-9.9-9.9-9.9h-412c-5.5,0-9.9,4.4-9.9,9.9v102.8
+                                        <path style="fill:#2C2F33;" d="M450.7,122.5c5.5,0,9.9-4.4,9.9-9.9V9.9c0-5.5-4.4-9.9-9.9-9.9h-412c-5.5,0-9.9,4.4-9.9,9.9v102.8
 			c0,5.5,4.4,9.9,9.9,9.9s9.9-4.4,9.9-9.9V19.8h392.2v92.9C440.8,118.1,445.2,122.5,450.7,122.5z"/>
-                                </g>
-                            </svg>
+                                    </g>
+                                </svg>
                         </div>
                         <div class="input-group">
                             <input type="file" onchange="setPreviewImage()" class="form-control" name="image"
@@ -113,9 +122,10 @@ $categories = getAllCategory();
                         <label class="form-label" for="productFormCategory">Category</label>
                         <select id="productFormCategory" class="form-select" name="category"
                                 aria-label="Select Category">
-                            <option id="defaultCategory" >Select Category</option>
+                            <option id="defaultCategory">Select Category</option>
                             <?php foreach ($categories as $category) { ?>
-                                <option id="category<?php echo $category['id'] ?>" value="<?php echo $category['id'] ?>"><?php echo $category['name'] ?></option>
+                                <option id="category<?php echo $category['id'] ?>"
+                                        value="<?php echo $category['id'] ?>"><?php echo $category['name'] ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -123,7 +133,8 @@ $categories = getAllCategory();
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button id="productFormSubmit" type="button" onclick="" data-bs-dismiss="modal" class="btn btn-primary">Save
+                    <button id="productFormSubmit" type="button" onclick="" data-bs-dismiss="modal"
+                            class="btn btn-primary">Save
                         changes
                     </button>
                 </div>
@@ -159,7 +170,8 @@ $categories = getAllCategory();
                                       d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
                             </svg>
                         </button>
-                        <button type="button" class="btn btn-primary" onclick="setMode('edit', <?= $product['id'] ?>)" data-bs-toggle="modal"
+                        <button type="button" class="btn btn-primary" onclick="setMode('edit', <?= $product['id'] ?>)"
+                                data-bs-toggle="modal"
                                 data-bs-target="#productFormModal">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -192,9 +204,10 @@ $categories = getAllCategory();
 <script src="js/svg-morpheus.js"></script>
 <script id="uploaderScript">
     var myIcons
-    function initSVGMorpheus(){
+
+    function initSVGMorpheus() {
         uploadContainer.innerHTML = '';
-        uploadContainer.innerHTML= svgPlaceholder.outerHTML;
+        uploadContainer.innerHTML = svgPlaceholder.outerHTML;
         myIcons = new SVGMorpheus('#uploadSvg');
         var container = uploadContainer
         myIcons.to('icon1');
@@ -205,6 +218,7 @@ $categories = getAllCategory();
             myIcons.to('icon1');
         });
     }
+
     initSVGMorpheus();
 </script>
 </body>
