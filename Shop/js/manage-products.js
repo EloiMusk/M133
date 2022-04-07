@@ -1,6 +1,6 @@
 let mode = ""
 
-function setMode(mode, id) {
+async function setMode(mode, id) {
     this.mode = mode
     if (mode === "create") {
         document.getElementById("productFormTitle").innerText = "Add Product"
@@ -14,7 +14,7 @@ function setMode(mode, id) {
         document.getElementById("productFormSubmit").onclick = function () {
             editProduct(id)
         }
-        fillForm(id)
+        await fillForm(id)
     }
 }
 
@@ -42,6 +42,12 @@ function createProduct() {
             showToast('Sucess', 'Product ' + mode + 'ed!')
         }
     });
+    imageUpload();
+    window.location.reload();
+}
+
+
+function imageUpload(){
     if (document.getElementById('productFormImage').value !== '' || document.getElementById('productFormImage').value !== null) {
         var file_data = $('#productFormImage').prop('files')[0];
         var form_data = new FormData();
@@ -59,21 +65,36 @@ function createProduct() {
             }
         });
     }
-    ;
+}
 
-
+function removeImage(){
+    var form_data = new FormData();
+    form_data.append('image', product.image);
+    $.ajax({
+        url: 'php/controller/delete.php', // <-- point to server-side PHP script
+        dataType: 'text',  // <-- what to expect back from the PHP script, if anything
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        type: 'post',
+        success: function () {
+            showToast('Sucess', 'Product image removed!', 'bg-success')
+        }
+    });
 }
 
 let svgPlaceholder = document.getElementById("uploadSvg");
 const imgtag = document.getElementById("productFormImagePreview");
 const uploadContainer = document.getElementById("uploadContainer");
+
 function setPreviewImage() {
     var selectedFile = document.getElementById('productFormImage').files[0];
     var reader = new FileReader();
     reader.onload = function (event) {
         imgtag.title = selectedFile.name;
         imgtag.src = event.target.result;
-        uploadContainer.innerHTML= imgtag.outerHTML;
+        uploadContainer.innerHTML = imgtag.outerHTML;
     };
 
     reader.readAsDataURL(selectedFile);
@@ -93,19 +114,27 @@ function showToast(title, body, type) {
     toast.show()
 }
 
-function deleteProduct(id){
+
+async function deleteProduct(id) {
+    await fillForm(id);
+    removeImage();
     $.ajax({
         url: 'php/controller/product.php?action=delete&id=' + id,
         type: 'get',
         success: function () {
-            showToast('Sucess', 'Product deleted!')
+            setTimeout(function () {
+                showToast('Sucess', 'Product deleted!')
+            }, 1000)
         }
     });
+    window.location.reload()
 }
 
-function editProduct(){
+function editProduct() {
     const formData = $('#productForm')
     var mode = this.mode
+    removeImage();
+    imageUpload();
     $.ajax({
         url: 'php/controller/product.php?action=' + mode,
         type: 'post',
@@ -115,20 +144,23 @@ function editProduct(){
             setForm(product)
         }
     });
+    window.location.reload();
 }
 
-function fillForm(id){
-    $.ajax({
+var product = null;
+async function fillForm(id) {
+    await $.ajax({
         url: 'php/controller/product.php?action=getById&id=' + id,
         type: 'get',
         success: function (data) {
-            var product = JSON.parse(data)
+            product = JSON.parse(data)
+            console.log(product)
             setForm(product)
         }
     });
 }
 
-function setForm(product){
+function setForm(product) {
     if (product == null) {
         document.getElementById('productFormName').value = ''
         document.getElementById('productFormDescription').value = ''
@@ -136,7 +168,7 @@ function setForm(product){
         document.getElementById('productFormTitle').innerText = "Create Product"
         return
     }
-    if (product.id != null){
+    if (product.id != null) {
         document.getElementById('productFormId').value = product.id
     }
     document.getElementById('productFormName').value = product.name
@@ -150,9 +182,9 @@ function setForm(product){
         uploadContainer.innerText = imgtag.outerHTML;
         imgtag.title = product.image;
         imgtag.src = "images/productImage/" + product.image;
-        uploadContainer.innerHTML= imgtag.outerHTML;
-    }else {
-        uploadContainer.innerHTML= svgPlaceholder.outerHTML;
+        uploadContainer.innerHTML = imgtag.outerHTML;
+    } else {
+        initSVGMorpheus();
     }
 }
 

@@ -56,7 +56,7 @@ $categories = getAllCategory();
                         <label class="form-label" for="productFormImage">Product Image</label>
                         <div id="uploadContainer" class="d-flex align-items-center  justify-content-center flex-column"
                              onclick="fileUpload()">
-                            <image id="productFormImagePreview" class="img-fluid" src="..." alt="">
+                            <image id="productFormImagePreview" class="img-fluid" src="" alt="">
                             <svg id="uploadSvg" preserveAspectRatio="xMidYMid meet" class="p-lg-3" width="100%" height="100%" viewBox=" 0 0 400 400" >
                                 <g id="icon1">
                                     <path style="fill:#3C92CA;" id="XMLID_10_" d="M105.604,105.605L150,61.212v183.786c0,8.284,6.716,15,15,15s15-6.716,15-15V61.213l44.392,44.392
@@ -193,6 +193,7 @@ $categories = getAllCategory();
 <script id="uploaderScript">
     var myIcons
     function initSVGMorpheus(){
+        uploadContainer.innerHTML = '';
         uploadContainer.innerHTML= svgPlaceholder.outerHTML;
         myIcons = new SVGMorpheus('#uploadSvg');
         var container = uploadContainer

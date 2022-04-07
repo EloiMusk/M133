@@ -6,13 +6,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         createProduct();
     }
     if ($_REQUEST["action"] === 'edit') {
-        updateProduct($_POST["id"], $_POST["name"], $_POST["price"], $_POST["description"], $_POST["category"], $_POST["image"]);
+        updateProduct();
     }
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET'){
     if ($_REQUEST["action"] === 'delete') {
-        deleteProduct($_GET['id']);
+        deleteProduct();
     }
     if ($_REQUEST["action"] === 'getById') {
         echo json_encode(getProduct($_GET['id']));

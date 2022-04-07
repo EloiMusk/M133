@@ -9,16 +9,6 @@ function createProduct()
     (name, price, description, image, categoryId)
     VALUES (?, ?, ?, ?, ?)";
 
-    echo $_POST['name'];
-    echo "<br>";
-    echo $_POST['price'];
-    echo "<br>";
-    echo $_POST['description'];
-    echo "<br>";
-    echo $_POST['image'];
-    echo "<br>";
-    echo $_POST['category'];
-
     $sth = $dblink->prepare($sql);
     $sth->execute(
         array(
@@ -59,19 +49,26 @@ function getAllProducts(){
     return $allProducts;
 }
 
-function deleteProduct($id)
+function deleteProduct()
 {
     $dblink = getDB();
     $sql = 'DELETE FROM product WHERE id=?;';
     $sth = $dblink->prepare($sql);
-    $sth->execute(array($id));
+    $sth->execute(array($_GET['id']));
 }
 
-function updateProduct($id, $name, $price, $description, $image, $category)
+function updateProduct()
 {
     $dblink = getDB();
     $sql = 'UPDATE product SET name=?, price=?, description=?, image=?, categoryId=? WHERE id=?;';
     $sth = $dblink->prepare($sql);
-    $sth->execute(array($name, $price, $description, $image, $category, $id));
+    $sth->execute(array(
+        $_POST['name'],
+        $_POST['price'],
+        $_POST['description'],
+        $_POST['image'],
+        $_POST['category'],
+        $_POST['id']
+    ));
 }
 ?>
