@@ -47,7 +47,7 @@
                     <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUCTS</p>
                     <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">We're bringing you the first Brick.</h1>
                     <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn"
-                       href="shop.html">Shop Now</a>
+                       href="shop.php">Shop Now</a>
                 </div>
             </div>
         </div>
@@ -59,7 +59,7 @@
                     <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUCTS</p>
                     <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">Bricks for LIFE!</h1>
                     <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn"
-                       href="shop.html">Shop Now</a>
+                       href="shop.php">Shop Now</a>
                 </div>
             </div>
         </div>
@@ -72,7 +72,7 @@
                     <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5"> A Brick a day <br>
                     keeps the Doctor away.</h1>
                     <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn"
-                       href="shop.html">Shop Now</a>
+                       href="shop.php">Shop Now</a>
                 </div>
             </div>
         </div>
@@ -153,7 +153,7 @@
                         </div>
                     </div>
                     <div class="product-content">
-                        <h4><a href="product-single.html">Reef Boardsport</a></h4>
+                        <h4><a href="product-single.php">Reef Boardsport</a></h4>
                         <p class="price">$200</p>
                     </div>
                 </div>
@@ -179,7 +179,7 @@
                         </div>
                     </div>
                     <div class="product-content">
-                        <h4><a href="product-single.html">Rainbow Shoes</a></h4>
+                        <h4><a href="product-single.php">Rainbow Shoes</a></h4>
                         <p class="price">$200</p>
                     </div>
                 </div>
@@ -205,7 +205,7 @@
                         </div>
                     </div>
                     <div class="product-content">
-                        <h4><a href="product-single.html">Strayhorn SP</a></h4>
+                        <h4><a href="product-single.php">Strayhorn SP</a></h4>
                         <p class="price">$230</p>
                     </div>
                 </div>
@@ -231,7 +231,7 @@
                         </div>
                     </div>
                     <div class="product-content">
-                        <h4><a href="product-single.html">Bradley Mid</a></h4>
+                        <h4><a href="product-single.php">Bradley Mid</a></h4>
                         <p class="price">$200</p>
                     </div>
                 </div>
@@ -257,7 +257,7 @@
                         </div>
                     </div>
                     <div class="product-content">
-                        <h4><a href="product-single.html">Rainbow Shoes</a></h4>
+                        <h4><a href="product-single.php">Rainbow Shoes</a></h4>
                         <p class="price">$200</p>
                     </div>
                 </div>
@@ -283,7 +283,7 @@
                         </div>
                     </div>
                     <div class="product-content">
-                        <h4><a href="product-single.html">Rainbow Shoes</a></h4>
+                        <h4><a href="product-single.php">Rainbow Shoes</a></h4>
                         <p class="price">$200</p>
                     </div>
                 </div>
@@ -310,7 +310,7 @@
                         </div>
                     </div>
                     <div class="product-content">
-                        <h4><a href="product-single.html">Rainbow Shoes</a></h4>
+                        <h4><a href="product-single.php">Rainbow Shoes</a></h4>
                         <p class="price">$200</p>
                     </div>
                 </div>
@@ -336,7 +336,7 @@
                         </div>
                     </div>
                     <div class="product-content">
-                        <h4><a href="product-single.html">Rainbow Shoes</a></h4>
+                        <h4><a href="product-single.php">Rainbow Shoes</a></h4>
                         <p class="price">$200</p>
                     </div>
                 </div>
@@ -362,7 +362,7 @@
                         </div>
                     </div>
                     <div class="product-content">
-                        <h4><a href="product-single.html">Rainbow Shoes</a></h4>
+                        <h4><a href="product-single.php">Rainbow Shoes</a></h4>
                         <p class="price">$200</p>
                     </div>
                 </div>
@@ -392,7 +392,7 @@
                                             cum. Illo laborum numquam rem aut officia dicta cumque.
                                         </p>
                                         <a href="cart.html" class="btn btn-main">Add To Cart</a>
-                                        <a href="product-single.html" class="btn btn-transparent">View Product
+                                        <a href="product-single.php" class="btn btn-transparent">View Product
                                             Details</a>
                                     </div>
                                 </div>
@@ -481,7 +481,7 @@ Start Call To Action
                         <a href="contact.html">CONTACT</a>
                     </li>
                     <li>
-                        <a href="shop.html">SHOP</a>
+                        <a href="shop.php">SHOP</a>
                     </li>
                     <li>
                         <a href="pricing.html">Pricing</a>

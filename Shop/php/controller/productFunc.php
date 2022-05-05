@@ -45,7 +45,7 @@ function getAllProducts(){
     $sql = 'SELECT * FROM product;';
     $sth = $dblink->prepare($sql);
     $sth->execute();
-    $allProducts = $sth->fetchAll();
+    $allProducts = $sth->fetchAll(PDO::FETCH_ASSOC);
     return $allProducts;
 }
 

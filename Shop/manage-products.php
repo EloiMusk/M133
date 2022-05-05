@@ -45,7 +45,6 @@ if(!isset($_SESSION['user'])){
 <body id="body">
 <?php include 'php/components/menu/menu.php' ?>
 <?php
-include 'php/controller/productFunc.php';
 $products = getAllProducts();
 $categories = getAllCategory();
 ?>

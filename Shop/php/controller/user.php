@@ -7,7 +7,6 @@ if (isset($_REQUEST['act'])) {
         try {
             $username = $_POST['username'];
             $password = $_POST['password'];
-            include 'userFunc.php';
             $user = authenticateUser($username, $password);
             if($user) {
                 $_SESSION['user'] = $user;

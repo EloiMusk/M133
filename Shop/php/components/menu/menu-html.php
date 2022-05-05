@@ -1,3 +1,6 @@
+<?php
+include $_SERVER['DOCUMENT_ROOT'] . '/php/controller/productFunc.php';
+?>
 <!-- Start Top Header Bar -->
 <section class="top-header">
     <div class="container">
@@ -34,36 +37,27 @@
                     <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i
                                 class="tf-ion-android-cart"></i>Cart</a>
                     <div class="dropdown-menu cart-dropdown">
-                        <!-- Cart Item -->
+                        <?php
+                        foreach ($_SESSION['cart'] as $key => $item){
+                            $product = getProduct($key);
+                        ?>
+                         Cart Item
                         <div class="media">
-                            <a class="pull-left" href="#!">
-                                <img class="media-object" src="/images/shop/cart/cart-1.jpg" alt="image"/>
+                            <a class="pull-left" href="/product-single.php?id=<?php echo $product['id']?>">
+                                <img class="media-object" src="/images/productImage/<?php echo $product['image'] ?>" alt="image"/>
                             </a>
                             <div class="media-body">
-                                <h4 class="media-heading"><a href="#!">Brown Brick</a></h4>
+                                <h4 class="media-heading"><a href="#!"><?php echo $product['name'] ?></a></h4>
                                 <div class="cart-price">
-                                    <span>1 x</span>
+                                    <span><?php echo $item?> x</span>
                                     <span>1250.00</span>
                                 </div>
                                 <h5><strong>$1200</strong></h5>
                             </div>
-                            <a href="#!" class="remove"><i class="tf-ion-close"></i></a>
-                        </div><!-- / Cart Item -->
-                        <!-- Cart Item -->
-                        <div class="media">
-                            <a class="pull-left" href="#!">
-                                <img class="media-object" src="images/shop/cart/cart-2.jpg" alt="image"/>
-                            </a>
-                            <div class="media-body">
-                                <h4 class="media-heading"><a href="#!">Red Brick</a></h4>
-                                <div class="cart-price">
-                                    <span>1 x</span>
-                                    <span>1250.00</span>
-                                </div>
-                                <h5><strong>$1200</strong></h5>
-                            </div>
-                            <a href="#!" class="remove"><i class="tf-ion-close"></i></a>
-                        </div><!-- / Cart Item -->
+                            <a onclick="removeFromCart()" class="remove"><i class="tf-ion-close"></i></a>
+                        </div>
+<!--                     / Cart Item -->
+                        <?php } ?>
 
                         <div class="cart-summary">
                             <span>Total</span>
@@ -123,7 +117,7 @@
 
                     <!-- Shop -->
                     <li class="dropdown nav-item">
-                        <a href="shop.html">Shop</a>
+                        <a href="shop.php">Shop</a>
                     </li>
                     <li class="dropdown nav-item dropdown-slide">
                         <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
