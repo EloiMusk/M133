@@ -1,6 +1,4 @@
 <?php session_start(); ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,10 +44,10 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="content">
-                    <h1 class="page-name">Shop</h1>
+                    <h1 class="page-name">Cart</h1>
                     <ol class="breadcrumb">
                         <li><a href="index.php">Home</a></li>
-                        <li class="active">shop</li>
+                        <li class="active">cart</li>
                     </ol>
                 </div>
             </div>
@@ -58,41 +56,65 @@
 </section>
 
 
-<section class="products section">
-    <div class="container">
-        <div class="row">
-            <?php
-            $products = getAllProducts();
-            foreach ($products as $product) {
-                ?>
-                    <div class="col-md-4">
-                        <div class="product-item">
-                            <div class="product-thumb">
-                                <img class="img-responsive" src="/images/productImage/<?php echo $product['image'] ?>"
-                                     alt="product-img"/>
-                                <div class="preview-meta">
-                                    <ul>
-                                        <li>
-                                            <a onclick="addToCart(<?php echo $product['id']?>)"><i class="tf-ion-android-cart"></i></a>
-                                        </li>
-                                        <li>
-                                            <a style="display: block" href="product-single.php?id=<?php echo $product['id'] ?>"><i
-                                                        class="tf-ion-android-open"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="product-content">
-                                <h4><?php echo $product['name'] ?></h4>
-                                <p class="price"><?php echo $product['price'] ?> $</p>
-                            </div>
+<div class="page-wrapper">
+    <div class="cart shopping">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="block">
+                        <div class="product-list">
+                            <form method="post">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th class="">Item Name</th>
+                                        <th class="">Quantity</th>
+                                        <th class="">Item Price</th>
+                                        <th class="">Total</th>
+                                        <th class="">Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                    if (isset($_SESSION['cart'])) {
+                                        foreach ($_SESSION['cart'] as $key => $item) {
+                                            $product = getProduct($key);
+                                            ?>
+                                            <tr class="">
+                                                <td class="">
+                                                    <div class="product-info">
+                                                        <img width="80"
+                                                             src="/images/productImage/<?php echo $product['image'] ?>"
+                                                             alt=""/>
+                                                        <a href="/product-single.php?id=<?php echo $product['id'] ?>"><?php echo $product['name'] ?></a>
+                                                    </div>
+                                                </td>
+                                                <td class="">
+                                                    <span><?php echo $item['quantity'] ?></span>
+                                                </td>
+                                                <td class="">
+                                                    <span>$<?php echo number_format($product['price'] , 2, '.', '\''); ?></span>
+                                                </td>
+                                                <td>
+                                                    <span><strong>$<?php echo number_format($item['quantity'] * $product['price'], 2, '.', '\''); ?></strong></span>
+                                                </td>
+                                                <td class="">
+                                                    <a class="product-remove" href="#!" onclick="removeFromCart( <?php echo $product['id']; ?>)">Remove</a>
+                                                </td>
+                                            </tr>
+                                        <?php }
+                                    } ?>
+                                    </tbody>
+                                </table>
+                                <a href="checkout.php" class="btn btn-main pull-right">Checkout</a>
+                            </form>
                         </div>
                     </div>
-            <?php } ?>
-
+                </div>
+            </div>
         </div>
     </div>
-</section>
+</div>
 
 
 <footer class="footer section text-center">
@@ -126,7 +148,7 @@
                         <a href="contact.html">CONTACT</a>
                     </li>
                     <li>
-                        <a href="shop.html">SHOP</a>
+                        <a href="shop.php">SHOP</a>
                     </li>
                     <li>
                         <a href="pricing.html">Pricing</a>
@@ -159,9 +181,16 @@ Essential Scripts
 <!-- Count Down Js -->
 <script src="plugins/syo-timer/build/jquery.syotimer.min.js"></script>
 
+<!-- slick Carousel -->
+<script src="plugins/slick/slick.min.js"></script>
+<script src="plugins/slick/slick-animation.min.js"></script>
+
+<!-- Google Mapl -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+<script type="text/javascript" src="plugins/google-map/gmap.js"></script>
+
 <!-- Main Js File -->
 <script src="js/script.js"></script>
-<script src="js/cart.js"></script>
 
 
 </body>

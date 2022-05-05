@@ -55,7 +55,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/php/controller/productFunc.php';
                                     <h4 class="media-heading"><a href="#!"><?php echo $product['name'] ?></a></h4>
                                     <div class="cart-price">
                                         <span><?php echo $item['quantity'] ?> x</span>
-                                        <span><?php echo $product['price'] ?></span>
+                                        <span><?php echo number_format($product['price'] , 2, '.', '\''); ?></span>
                                     </div>
                                     <h4>
                                        $<?php echo number_format($item['quantity'] * $product['price'], 2, '.', '\'');;
@@ -73,8 +73,8 @@ include $_SERVER['DOCUMENT_ROOT'] . '/php/controller/productFunc.php';
                             <span class="total-price">$<?php echo number_format($_SESSION['total'], 2, '.', '\''); ?></span>
                         </div>
                         <ul class="text-center cart-buttons">
-                            <li><a href="cart.html" class="btn btn-small">View Cart</a></li>
-                            <li><a href="checkout.html" class="btn btn-small btn-solid-border">Checkout</a></li>
+                            <li><a href="cart.php" class="btn btn-small">View Cart</a></li>
+                            <li><a href="checkout.php" class="btn btn-small btn-solid-border">Checkout</a></li>
                         </ul>
                     </div>
 

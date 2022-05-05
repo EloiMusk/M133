@@ -391,7 +391,7 @@
                                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem iusto nihil
                                             cum. Illo laborum numquam rem aut officia dicta cumque.
                                         </p>
-                                        <a href="cart.html" class="btn btn-main">Add To Cart</a>
+                                        <a href="cart.php" class="btn btn-main">Add To Cart</a>
                                         <a href="product-single.php" class="btn btn-transparent">View Product
                                             Details</a>
                                     </div>
