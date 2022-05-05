@@ -91,10 +91,10 @@ $categories = getAllCategory();
                         </div>
                     </div>
                     <div class="product-category">
-                        <span>Categories:</span>
+                        <span>Categorie:</span>
                         <ul>
                             <li>
-                                <a href="category.php?id=<?php echo $product['categoryId'] ?>"><?php echo $categories[$product['categoryId'] -1]['name'] ?></a>
+                                <a href="shop.php?category=<?php echo $product['categoryId'] ?>"><?php echo $categories[$product['categoryId'] -1]['name'] ?></a>
                             </li>
                         </ul>
                     </div>

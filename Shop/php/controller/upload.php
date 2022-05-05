@@ -1,4 +1,23 @@
 <?php
+function compress($source, $destination, $quality) {
+
+    $info = getimagesize($source);
+
+    if ($info['mime'] == 'image/jpeg')
+        $image = imagecreatefromjpeg($source);
+
+    elseif ($info['mime'] == 'image/gif')
+        $image = imagecreatefromgif($source);
+
+    elseif ($info['mime'] == 'image/png')
+        $image = imagecreatefrompng($source);
+
+
+    imagejpeg($image, $destination, $quality);
+
+    return $destination;
+}
+
 $target_dir = "../../images/productImage/";
 $target_file = $target_dir . basename($_FILES["image"]["name"]);
 $uploadOk = 1;
@@ -17,14 +36,8 @@ if(isset($_POST["submit"])) {
 }
 
 // Check if file already exists
-//if (file_exists($target_file)) {
-//    echo "Sorry, file already exists.";
-//    $uploadOk = 0;
-//}
-
-// Check file size
-if ($_FILES["image"]["size"] > 500000) {
-    echo "Sorry, your file is too large.";
+if (file_exists($target_file)) {
+    echo "Sorry, file already exists.";
     $uploadOk = 0;
 }
 
@@ -41,7 +54,8 @@ if ($uploadOk == 0) {
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-        echo "The file ". htmlspecialchars( basename( $_FILES["image"]["name"])). " has been uploaded.";
+        echo "The file ". basename( $_FILES["image"]["name"]). " has been uploaded.";
+        $target_file = compress($target_file, $target_file, 75);
     } else {
         echo "Sorry, there was an error uploading your file.";
     }

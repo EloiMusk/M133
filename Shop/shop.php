@@ -86,7 +86,7 @@ FACEBOOK: https://www.facebook.com/themefisher
                                 <div class="preview-meta">
                                     <ul>
                                         <li>
-                                            <a onclick="addToCart(<?php echo $product['id'] ?>)"><i class="tf-ion-android-cart"></i></a>
+                                            <a onclick="addToCart(<?php echo $product['id']?>)"><i class="tf-ion-android-cart"></i></a>
                                         </li>
                                         <li>
                                             <a style="display: block" href="product-single.php?id=<?php echo $product['id'] ?>"><i
@@ -172,16 +172,9 @@ Essential Scripts
 <!-- Count Down Js -->
 <script src="plugins/syo-timer/build/jquery.syotimer.min.js"></script>
 
-<!-- slick Carousel -->
-<script src="plugins/slick/slick.min.js"></script>
-<script src="plugins/slick/slick-animation.min.js"></script>
-
-<!-- Google Mapl -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
-<script type="text/javascript" src="plugins/google-map/gmap.js"></script>
-
 <!-- Main Js File -->
 <script src="js/script.js"></script>
+<script src="js/cart.js"></script>
 
 
 </body>

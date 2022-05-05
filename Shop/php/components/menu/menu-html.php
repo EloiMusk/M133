@@ -38,30 +38,39 @@ include $_SERVER['DOCUMENT_ROOT'] . '/php/controller/productFunc.php';
                                 class="tf-ion-android-cart"></i>Cart</a>
                     <div class="dropdown-menu cart-dropdown">
                         <?php
-                        foreach ($_SESSION['cart'] as $key => $item){
+                        $cart = $_SESSION['cart'];
+                        $_SESSION['total'] = 0;
+                        if (isset($cart)){
+                        foreach ($cart as $key => $item) {
                             $product = getProduct($key);
-                        ?>
-                         Cart Item
-                        <div class="media">
-                            <a class="pull-left" href="/product-single.php?id=<?php echo $product['id']?>">
-                                <img class="media-object" src="/images/productImage/<?php echo $product['image'] ?>" alt="image"/>
-                            </a>
-                            <div class="media-body">
-                                <h4 class="media-heading"><a href="#!"><?php echo $product['name'] ?></a></h4>
-                                <div class="cart-price">
-                                    <span><?php echo $item?> x</span>
-                                    <span>1250.00</span>
+
+                            ?>
+                            Cart Item
+                            <div class="media" id="'<?php echo 'cart-item-' . $product['id'] ?>">
+                                <a class="pull-left" href="/product-single.php?id=<?php echo $product['id'] ?>">
+                                    <img class="media-object" src="/images/productImage/<?php echo $product['image'] ?>"
+                                         alt="image"/>
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading"><a href="#!"><?php echo $product['name'] ?></a></h4>
+                                    <div class="cart-price">
+                                        <span><?php echo $item['quantity'] ?> x</span>
+                                        <span><?php echo $product['price'] ?></span>
+                                    </div>
+                                    <h4>
+                                       $<?php echo number_format($item['quantity'] * $product['price'], 2, '.', '\'');;
+                                        $_SESSION['total'] += $item['quantity'] * $product['price'] ?>
+                                    </h4>
                                 </div>
-                                <h5><strong>$1200</strong></h5>
+                                <a onclick="removeFromCart( <?php echo $product['id']; ?>)" class="remove"><i
+                                            class="tf-ion-close"></i></a>
                             </div>
-                            <a onclick="removeFromCart()" class="remove"><i class="tf-ion-close"></i></a>
-                        </div>
-<!--                     / Cart Item -->
-                        <?php } ?>
+                            <!--                     / Cart Item -->
+                        <?php }} ?>
 
                         <div class="cart-summary">
                             <span>Total</span>
-                            <span class="total-price">$1799.00</span>
+                            <span class="total-price">$<?php echo number_format($_SESSION['total'], 2, '.', '\''); ?></span>
                         </div>
                         <ul class="text-center cart-buttons">
                             <li><a href="cart.html" class="btn btn-small">View Cart</a></li>
@@ -111,7 +120,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/php/controller/productFunc.php';
                 <ul class="navbar-nav mb-2 mb-lg-0 p-lg-3">
                     <!-- Home -->
                     <li class="dropdown nav-item">
-                        <a href="index.html">Home</a>
+                        <a href="index.php">Home</a>
                     </li><!-- / Home -->
 
 
@@ -219,3 +228,6 @@ Essential Scripts
 
 <!-- Main Js File -->
 <script src="js/script.js"></script>
+<script src="js/cart.js"></script>
+
+

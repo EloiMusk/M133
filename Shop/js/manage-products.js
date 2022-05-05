@@ -42,37 +42,37 @@ function createProduct() {
             showToast('Sucess', 'Product ' + mode + 'ed!')
         }
     });
-    imageUpload();
-    window.location.reload();
+    imageUpload().then(() => {window.location.reload();})
+
 }
 
 
-function imageUpload(){
+async function imageUpload() {
     if (document.getElementById('productFormImage').value !== '' || document.getElementById('productFormImage').value !== null) {
         var file_data = $('#productFormImage').prop('files')[0];
         var form_data = new FormData();
         form_data.append('image', file_data);
-        $.ajax({
+        await $.ajax({
             url: 'php/controller/upload.php', // <-- point to server-side PHP script
             dataType: 'text',  // <-- what to expect back from the PHP script, if anything
             cache: false,
             contentType: false,
             processData: false,
             data: form_data,
-            type: 'post',
-            success: function () {
+            type: 'POST',
+            success: function (data) {
                 showToast('Sucess', 'Product image uploaded!', 'bg-success')
+                console.log('data: ', data)
             }
         });
     }
 }
 
-function removeImage(){
+async function removeImage() {
     var form_data = new FormData();
     form_data.append('image', product.image);
-    $.ajax({
+    await $.ajax({
         url: 'php/controller/delete.php', // <-- point to server-side PHP script
-        dataType: 'text',  // <-- what to expect back from the PHP script, if anything
         cache: false,
         contentType: false,
         processData: false,
@@ -133,21 +133,29 @@ async function deleteProduct(id) {
 function editProduct() {
     const formData = $('#productForm')
     var mode = this.mode
-    removeImage();
-    imageUpload();
-    $.ajax({
-        url: 'php/controller/product.php?action=' + mode,
-        type: 'post',
-        data: formData.serialize() + "&image=" + getFilename(),
-        success: function (data) {
-            var product = JSON.parse(data)
-            setForm(product)
-        }
+    removeImage().then(()=>{
+        imageUpload().then(()=> {
+            $.ajax({
+                url: 'php/controller/product.php?action=' + mode,
+                dataType: 'json',
+                type: 'post',
+                data: formData.serialize() + "&image=" + getFilename(),
+                success: function (data) {
+                    var product = JSON.parse(data)
+                    setForm(product)
+                }
+            }).then(() => {
+                window.location.reload();
+            });
+        });
     });
-    window.location.reload();
+
+
+
 }
 
 var product = null;
+
 async function fillForm(id) {
     await $.ajax({
         url: 'php/controller/product.php?action=getById&id=' + id,
