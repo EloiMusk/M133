@@ -38,35 +38,38 @@ include $_SERVER['DOCUMENT_ROOT'] . '/php/controller/productFunc.php';
                                 class="tf-ion-android-cart"></i>Cart</a>
                     <div class="dropdown-menu cart-dropdown">
                         <?php
-                        $cart = $_SESSION['cart'];
-                        $_SESSION['total'] = 0;
-                        if (isset($cart)){
-                        foreach ($cart as $key => $item) {
-                            $product = getProduct($key);
 
-                            ?>
-                            Cart Item
-                            <div class="media" id="'<?php echo 'cart-item-' . $product['id'] ?>">
-                                <a class="pull-left" href="/product-single.php?id=<?php echo $product['id'] ?>">
-                                    <img class="media-object" src="/images/productImage/<?php echo $product['image'] ?>"
-                                         alt="image"/>
-                                </a>
-                                <div class="media-body">
-                                    <h4 class="media-heading"><a href="#!"><?php echo $product['name'] ?></a></h4>
-                                    <div class="cart-price">
-                                        <span><?php echo $item['quantity'] ?> x</span>
-                                        <span><?php echo number_format($product['price'] , 2, '.', '\''); ?></span>
+                        $_SESSION['total'] = 0;
+                        if (isset($_SESSION['cart'])) {
+                            $cart = $_SESSION['cart'];
+                            foreach ($cart as $key => $item) {
+                                $product = getProduct($key);
+
+                                ?>
+                                Cart Item
+                                <div class="media" id="'<?php echo 'cart-item-' . $product['id'] ?>">
+                                    <a class="pull-left" href="/product-single.php?id=<?php echo $product['id'] ?>">
+                                        <img class="media-object"
+                                             src="/images/productImage/<?php echo $product['image'] ?>"
+                                             alt="image"/>
+                                    </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading"><a href="#!"><?php echo $product['name'] ?></a></h4>
+                                        <div class="cart-price">
+                                            <span><?php echo $item['quantity'] ?> x</span>
+                                            <span><?php echo number_format($product['price'], 2, '.', '\''); ?></span>
+                                        </div>
+                                        <h4>
+                                            $<?php echo number_format($item['quantity'] * $product['price'], 2, '.', '\'');;
+                                            $_SESSION['total'] += $item['quantity'] * $product['price'] ?>
+                                        </h4>
                                     </div>
-                                    <h4>
-                                       $<?php echo number_format($item['quantity'] * $product['price'], 2, '.', '\'');;
-                                        $_SESSION['total'] += $item['quantity'] * $product['price'] ?>
-                                    </h4>
+                                    <a onclick="removeFromCart( <?php echo $product['id']; ?>)" class="remove"><i
+                                                class="tf-ion-close"></i></a>
                                 </div>
-                                <a onclick="removeFromCart( <?php echo $product['id']; ?>)" class="remove"><i
-                                            class="tf-ion-close"></i></a>
-                            </div>
-                            <!--                     / Cart Item -->
-                        <?php }} ?>
+                                <!--                     / Cart Item -->
+                            <?php }
+                        } ?>
 
                         <div class="cart-summary">
                             <span>Total</span>
@@ -128,68 +131,68 @@ include $_SERVER['DOCUMENT_ROOT'] . '/php/controller/productFunc.php';
                     <li class="dropdown nav-item">
                         <a href="shop.php">Shop</a>
                     </li>
-                    <li class="dropdown nav-item dropdown-slide">
-                        <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
-                           data-delay="350"
-                           role="button" aria-haspopup="true" aria-expanded="false">Account<span
-                                    class="tf-ion-ios-arrow-down"></span></a>
-                        <div class="dropdown-menu">
-                            <div class="row">
-
-                                <!-- Basic -->
-                                <div class="col-lg-6 col-md-6 mb-sm-3">
-                                    <ul>
-                                        <li class="dropdown-header">Login/Register</li>
-                                        <li role="separator" class="divider"></li>
-                                        <li><a href="login.php">Login</a></li>
-                                        <li><a href="signin.php">Register</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-6 col-md-6 mb-sm-3">
-                                    <ul>
-                                        <li class="dropdown-header">Manage</li>
-                                        <li role="separator" class="divider"></li>
-                                        <li><a href="cart.html">Cart</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="confirmation.html">Confirmation</a></li>
-                                        <li><a href="order.html">Orders</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-6 col-md-6 mb-sm-3">
-                                    <ul>
-                                        <li class="dropdown-header">Personal</li>
-                                        <li role="separator" class="divider"></li>
-                                        <li><a href="dashboard.html">Dashboard</a></li>
-                                        <li><a href="address.html">Adress</a></li>
-                                        <li><a href="profile-details.html">Profile Details</a></li>
-                                    </ul>
-                                </div>
-
-                            </div><!-- / .row -->
-                        </div><!-- / .dropdown-menu -->
-                    </li><!-- / Shop -->
-
-
-                    <!-- About Us -->
-                    <li class="dropdown dropdown-slide">
-                        <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
-                           data-delay="350"
-                           role="button" aria-haspopup="true" aria-expanded="false">About Us <span
-                                    class="tf-ion-ios-arrow-down"></span></a>
-                        <div class="dropdown-menu">
-                            <div class="row">
-
-                                <!-- Introduction -->
-                                <div class="col-lg-12 col-md-6 mb-sm-3">
-                                    <ul>
-                                        <li><a href="contact.html">Contact Us</a></li>
-                                        <li><a href="about.html">About Us</a></li>
-                                        <li><a href="faq.html">FAQ</a></li>
-                                    </ul>
-                                </div>
-                            </div><!-- / .row -->
-                        </div><!-- / .dropdown-menu -->
-                    </li><!-- / Pages -->
+<!--                    <li class="dropdown nav-item dropdown-slide">-->
+<!--                        <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"-->
+<!--                           data-delay="350"-->
+<!--                           role="button" aria-haspopup="true" aria-expanded="false">Account<span-->
+<!--                                    class="tf-ion-ios-arrow-down"></span></a>-->
+<!--                        <div class="dropdown-menu">-->
+<!--                            <div class="row">-->
+<!---->
+<!--                                Basic -->
+<!--                                <div class="col-lg-6 col-md-6 mb-sm-3">-->
+<!--                                    <ul>-->
+<!--                                        <li class="dropdown-header">Login/Register</li>-->
+<!--                                        <li role="separator" class="divider"></li>-->
+<!--                                        <li><a href="login.php">Login</a></li>-->
+<!--                                        <li><a href="signin.php">Register</a></li>-->
+<!--                                    </ul>-->
+<!--                                </div>-->
+<!--                                <div class="col-lg-6 col-md-6 mb-sm-3">-->
+<!--                                    <ul>-->
+<!--                                        <li class="dropdown-header">Manage</li>-->
+<!--                                        <li role="separator" class="divider"></li>-->
+<!--                                        <li><a href="cart.html">Cart</a></li>-->
+<!--                                        <li><a href="checkout.html">Checkout</a></li>-->
+<!--                                        <li><a href="confirmation.html">Confirmation</a></li>-->
+<!--                                        <li><a href="order.html">Orders</a></li>-->
+<!--                                    </ul>-->
+<!--                                </div>-->
+<!--                                <div class="col-lg-6 col-md-6 mb-sm-3">-->
+<!--                                    <ul>-->
+<!--                                        <li class="dropdown-header">Personal</li>-->
+<!--                                        <li role="separator" class="divider"></li>-->
+<!--                                        <li><a href="dashboard.html">Dashboard</a></li>-->
+<!--                                        <li><a href="address.html">Adress</a></li>-->
+<!--                                        <li><a href="profile-details.html">Profile Details</a></li>-->
+<!--                                    </ul>-->
+<!--                                </div>-->
+<!---->
+<!--                            </div> / .row -->
+<!--                        </div> / .dropdown-menu -->
+<!--                    </li> / Shop -->
+<!---->
+<!---->
+<!--                    About Us -->
+<!--                    <li class="dropdown dropdown-slide">-->
+<!--                        <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"-->
+<!--                           data-delay="350"-->
+<!--                           role="button" aria-haspopup="true" aria-expanded="false">About Us <span-->
+<!--                                    class="tf-ion-ios-arrow-down"></span></a>-->
+<!--                        <div class="dropdown-menu">-->
+<!--                            <div class="row">-->
+<!---->
+<!--                                Introduction -->
+<!--                                <div class="col-lg-12 col-md-6 mb-sm-3">-->
+<!--                                    <ul>-->
+<!--                                        <li><a href="contact.html">Contact Us</a></li>-->
+<!--                                        <li><a href="about.html">About Us</a></li>-->
+<!--                                        <li><a href="faq.html">FAQ</a></li>-->
+<!--                                    </ul>-->
+<!--                                </div>-->
+<!--                            </div> / .row -->
+<!--                        </div> / .dropdown-menu -->
+<!--                    </li> / Pages -->
                 </ul><!-- / .nav .navbar-nav -->
 
             </div>

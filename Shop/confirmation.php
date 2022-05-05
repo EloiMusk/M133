@@ -1,18 +1,7 @@
-<!-- 
-THEME: Aviato | E-commerce template
-VERSION: 1.0.0
-AUTHOR: Themefisher
-
-HOMEPAGE: https://themefisher.com/products/aviato-e-commerce-template/
-DEMO: https://demo.themefisher.com/aviato/
-GITHUB: https://github.com/themefisher/Aviato-E-Commerce-Template/
-
-WEBSITE: https://themefisher.com
-TWITTER: https://twitter.com/themefisher
-FACEBOOK: https://www.facebook.com/themefisher
--->
-
-
+<?php
+session_start();
+unset($_SESSION['cart'])
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,32 +39,68 @@ FACEBOOK: https://www.facebook.com/themefisher
 </head>
 
 <body id="body">
-
-<section class="forget-password-page account">
+<?php include 'php/components/menu/menu.php'; ?>
+<!-- Page Wrapper -->
+<section class="page-wrapper success-msg">
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
         <div class="block text-center">
-          <a class="logo" href="index.php">
-            <img src="images/logo.png" alt="">
-          </a>
-          <h2 class="text-center">Welcome Back</h2>
-          <form class="text-left clearfix">
-            <p>Please enter the email address for your account. A verification code will be sent to you. Once you have received the verification code, you will be able to choose a new password for your account.</p>
-            <div class="form-group">
-              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Account email address">
-            </div>
-            <div class="text-center">
-              <button type="submit" class="btn btn-main text-center">Request password reset</button>
-            </div>
-          </form>
-          <p class="mt-20"><a href="login.php">Back to log in</a></p>
+        	<i class="tf-ion-android-checkmark-circle"></i>
+          <h2 class="text-center">Thank you! For your payment</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, sed.</p>
+          <a href="shop.php" class="btn btn-main mt-20">Continue Shopping</a>
         </div>
       </div>
     </div>
   </div>
-</section>
+</section><!-- /.page-warpper -->
 
+<footer class="footer section text-center">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="social-media">
+					<li>
+						<a href="https://www.facebook.com/themefisher">
+							<i class="tf-ion-social-facebook"></i>
+						</a>
+					</li>
+					<li>
+						<a href="https://www.instagram.com/themefisher">
+							<i class="tf-ion-social-instagram"></i>
+						</a>
+					</li>
+					<li>
+						<a href="https://www.twitter.com/themefisher">
+							<i class="tf-ion-social-twitter"></i>
+						</a>
+					</li>
+					<li>
+						<a href="https://www.pinterest.com/themefisher/">
+							<i class="tf-ion-social-pinterest"></i>
+						</a>
+					</li>
+				</ul>
+				<ul class="footer-menu text-uppercase">
+					<li>
+						<a href="contact.html">CONTACT</a>
+					</li>
+					<li>
+						<a href="shop.php">SHOP</a>
+					</li>
+					<li>
+						<a href="pricing.html">Pricing</a>
+					</li>
+					<li>
+						<a href="contact.html">PRIVACY POLICY</a>
+					</li>
+				</ul>
+				<p class="copyright-text">Copyright &copy;2021, Designed &amp; Developed by <a href="https://themefisher.com/">Themefisher</a></p>
+			</div>
+		</div>
+	</div>
+</footer>
     <!-- 
     Essential Scripts
     =====================================-->

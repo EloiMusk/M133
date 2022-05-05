@@ -1,4 +1,11 @@
-<?php session_start(); ?>
+<?php
+session_start();
+if (!isset($_SESSION['cart'])){
+    header('Location: /empty-cart.php');
+}elseif (!$_SESSION['total'] > 0 ){
+    header('Location: /empty-cart.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -1,16 +1,4 @@
-<!-- 
-THEME: Aviato | E-commerce template
-VERSION: 1.0.0
-AUTHOR: Themefisher
-
-HOMEPAGE: https://themefisher.com/products/aviato-e-commerce-template/
-DEMO: https://demo.themefisher.com/aviato/
-GITHUB: https://github.com/themefisher/Aviato-E-Commerce-Template/
-
-WEBSITE: https://themefisher.com
-TWITTER: https://twitter.com/themefisher
-FACEBOOK: https://www.facebook.com/themefisher
--->
+<?php session_start() ?>
 
 
 <!DOCTYPE html>
@@ -50,40 +38,68 @@ FACEBOOK: https://www.facebook.com/themefisher
 </head>
 
 <body id="body">
+<?php include 'php/components/menu/menu.php'; ?>
 
-<section class="coming-soon bg-coming-soon text-center overly">
+
+<section class="empty-cart page-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="block text-center">
+        	<i class="tf-ion-ios-cart-outline"></i>
+          	<h2 class="text-center">Your cart is currently empty.</h2>
+          	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, sed.</p>
+          	<a href="shop.php" class="btn btn-main mt-20">Return to shop</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer section text-center">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8 col-md-offset-2">
-				<div class="block">
-					<div class="count-down">
-						<div class="syotimer">
-							<div class="your_selector_to_countdown" id="simple-timer"></div>
-						</div>
-					</div>
-					<h1>Hello, we're Aviato and <br> we are almost ready for launch</h1>
-					<div class="social-media-icons mt-20">
-						<ul>
-							<li><a href="https://themefisher.com/"><i class="tf-ion-social-facebook"></i></a></li>
-							<li><a href="https://themefisher.com/"><i class="tf-ion-social-twitter"></i></a></li>
-							<li><a href="https://themefisher.com/"><i class="tf-ion-social-linkedin"></i></a></li>
-							<li><a href="https://themefisher.com/"><i class="tf-ion-social-octocat"></i></a></li>
-							<li><a href="https://themefisher.com/"><i class="tf-ion-social-pinterest"></i></a></li>
-							<li><a href="https://themefisher.com/"><i class="tf-ion-social-instagram"></i></a></li>
-
-						</ul>
-
-
-					</div>
-
-					<p class="copyright-text">Copyright &copy; 2020. Designed &amp; Developed by <a href="https://themefisher.com/">Themefisher</a></p>
-
-				</div>
+			<div class="col-md-12">
+				<ul class="social-media">
+					<li>
+						<a href="https://www.facebook.com/themefisher">
+							<i class="tf-ion-social-facebook"></i>
+						</a>
+					</li>
+					<li>
+						<a href="https://www.instagram.com/themefisher">
+							<i class="tf-ion-social-instagram"></i>
+						</a>
+					</li>
+					<li>
+						<a href="https://www.twitter.com/themefisher">
+							<i class="tf-ion-social-twitter"></i>
+						</a>
+					</li>
+					<li>
+						<a href="https://www.pinterest.com/themefisher/">
+							<i class="tf-ion-social-pinterest"></i>
+						</a>
+					</li>
+				</ul>
+				<ul class="footer-menu text-uppercase">
+					<li>
+						<a href="contact.html">CONTACT</a>
+					</li>
+					<li>
+						<a href="shop.php">SHOP</a>
+					</li>
+					<li>
+						<a href="pricing.html">Pricing</a>
+					</li>
+					<li>
+						<a href="contact.html">PRIVACY POLICY</a>
+					</li>
+				</ul>
+				<p class="copyright-text">Copyright &copy;2021, Designed &amp; Developed by <a href="https://themefisher.com/">Themefisher</a></p>
 			</div>
 		</div>
 	</div>
-</section>
-
+</footer>
     <!-- 
     Essential Scripts
     =====================================-->
