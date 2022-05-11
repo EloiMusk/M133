@@ -1,4 +1,5 @@
 <?php
+
 function getDB()
 {
     if (strpos(php_uname(), 'vtxhosting.ch') == true) {
@@ -8,14 +9,10 @@ function getDB()
     }
 
     try {
-
-        $dblink = new PDO('mysql:host=localhost;dbname=' . $dbname, $dbuser, $dbpass);
-        return $dblink;
-
+        return new PDO('mysql:host=localhost;dbname=' . $dbname, $dbuser, $dbpass);
     } catch (PDOException $exception) {
-
         echo 'Connection failed: ' . $exception->getMessage();
-
+        return null;
     }
 }
-?>
+

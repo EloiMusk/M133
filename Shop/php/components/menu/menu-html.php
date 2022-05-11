@@ -97,7 +97,14 @@ include $_SERVER['DOCUMENT_ROOT'] . '/php/controller/productFunc.php';
                 <!--        logout button -->
                 <?php
                 if (isset($_SESSION['user']['id'])) {
-                    print('<a href="/index.php?logout=1" class="btn btn-small btn-solid-border">Logout</a>');
+                    echo '<div class="dropdown-slide">
+                    <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i
+                                class="tf-ion-ios-person"></i> ' . $_SESSION['user']['username'] . ' </a>
+                    <ul class="dropdown-menu user-dropdown">
+                        <li><a href="/adress-management.php">Adress</a></li>
+                        <li><a href="/index.php?logout=1">Logout</a></li>
+                    </ul>
+                </div>';
                 } else {
                     echo '<a href="/login.php" class="btn btn-small btn-solid-border">Login</a>';
                 }
@@ -126,73 +133,10 @@ include $_SERVER['DOCUMENT_ROOT'] . '/php/controller/productFunc.php';
                         <a href="index.php">Home</a>
                     </li><!-- / Home -->
 
-
                     <!-- Shop -->
                     <li class="dropdown nav-item">
                         <a href="shop.php">Shop</a>
                     </li>
-<!--                    <li class="dropdown nav-item dropdown-slide">-->
-<!--                        <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"-->
-<!--                           data-delay="350"-->
-<!--                           role="button" aria-haspopup="true" aria-expanded="false">Account<span-->
-<!--                                    class="tf-ion-ios-arrow-down"></span></a>-->
-<!--                        <div class="dropdown-menu">-->
-<!--                            <div class="row">-->
-<!---->
-<!--                                Basic -->
-<!--                                <div class="col-lg-6 col-md-6 mb-sm-3">-->
-<!--                                    <ul>-->
-<!--                                        <li class="dropdown-header">Login/Register</li>-->
-<!--                                        <li role="separator" class="divider"></li>-->
-<!--                                        <li><a href="login.php">Login</a></li>-->
-<!--                                        <li><a href="signin.php">Register</a></li>-->
-<!--                                    </ul>-->
-<!--                                </div>-->
-<!--                                <div class="col-lg-6 col-md-6 mb-sm-3">-->
-<!--                                    <ul>-->
-<!--                                        <li class="dropdown-header">Manage</li>-->
-<!--                                        <li role="separator" class="divider"></li>-->
-<!--                                        <li><a href="cart.html">Cart</a></li>-->
-<!--                                        <li><a href="checkout.html">Checkout</a></li>-->
-<!--                                        <li><a href="confirmation.html">Confirmation</a></li>-->
-<!--                                        <li><a href="order.html">Orders</a></li>-->
-<!--                                    </ul>-->
-<!--                                </div>-->
-<!--                                <div class="col-lg-6 col-md-6 mb-sm-3">-->
-<!--                                    <ul>-->
-<!--                                        <li class="dropdown-header">Personal</li>-->
-<!--                                        <li role="separator" class="divider"></li>-->
-<!--                                        <li><a href="dashboard.html">Dashboard</a></li>-->
-<!--                                        <li><a href="address.html">Adress</a></li>-->
-<!--                                        <li><a href="profile-details.html">Profile Details</a></li>-->
-<!--                                    </ul>-->
-<!--                                </div>-->
-<!---->
-<!--                            </div> / .row -->
-<!--                        </div> / .dropdown-menu -->
-<!--                    </li> / Shop -->
-<!---->
-<!---->
-<!--                    About Us -->
-<!--                    <li class="dropdown dropdown-slide">-->
-<!--                        <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"-->
-<!--                           data-delay="350"-->
-<!--                           role="button" aria-haspopup="true" aria-expanded="false">About Us <span-->
-<!--                                    class="tf-ion-ios-arrow-down"></span></a>-->
-<!--                        <div class="dropdown-menu">-->
-<!--                            <div class="row">-->
-<!---->
-<!--                                Introduction -->
-<!--                                <div class="col-lg-12 col-md-6 mb-sm-3">-->
-<!--                                    <ul>-->
-<!--                                        <li><a href="contact.html">Contact Us</a></li>-->
-<!--                                        <li><a href="about.html">About Us</a></li>-->
-<!--                                        <li><a href="faq.html">FAQ</a></li>-->
-<!--                                    </ul>-->
-<!--                                </div>-->
-<!--                            </div> / .row -->
-<!--                        </div> / .dropdown-menu -->
-<!--                    </li> / Pages -->
                 </ul><!-- / .nav .navbar-nav -->
 
             </div>
@@ -231,6 +175,3 @@ Essential Scripts
 
 <!-- Main Js File -->
 <script src="js/script.js"></script>
-<script src="js/cart.js"></script>
-
-

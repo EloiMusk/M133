@@ -30,7 +30,7 @@ if (isset($_REQUEST['act'])) {
             $username = $_POST['username'];
             $password = $_POST['password'];
             $email = $_POST['email'];
-            $user = createUser($firstname, $lastname, $username, $password, $email);
+            $user = createUser($username, $password, $firstname, $lastname, $email);
             if ($user) {
                 $_SESSION['user'] = $user;
                 header('Location: /index.php');

@@ -1,5 +1,5 @@
 <?php
-include dirname(__FILE__ ) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'getDB.php';
+include_once dirname(__FILE__ ) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'getDB.php';
 
 function createProduct()
 {
@@ -71,4 +71,5 @@ function updateProduct()
         $_POST['id']
     ));
 }
+
 ?>

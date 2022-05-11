@@ -62,59 +62,34 @@
                 <div class="col-md-8">
                     <div class="block billing-details">
                         <h4 class="widget-title">Billing Details</h4>
-                        <form class="checkout-form">
+                        <form class="checkout-form" id="adressForm">
                             <div class="form-group">
                                 <label for="full_name">Full Name</label>
-                                <input type="text" class="form-control" id="full_name" placeholder="">
-                            </div>
-                            <div class="form-group">
-                                <label for="user_address">Address</label>
-                                <input type="text" class="form-control" id="user_address" placeholder="">
+                                <input type="text" class="form-control" value="<?php echo $_SESSION['user']['firstname'] . ' ' . $_SESSION['user']['lastname']?>" id="full_name" placeholder="">
                             </div>
                             <div class="checkout-country-code clearfix">
                                 <div class="form-group">
+                                    <label for="user_address">Street</label>
+                                    <input type="text" class="form-control" id="street" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="user_address">Nr.</label>
+                                    <input type="text" class="form-control" id="nr" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="checkout-country-code clearfix">
+                                <div class="form-group">
                                     <label for="user_post_code">Zip Code</label>
-                                    <input type="text" class="form-control" id="user_post_code" name="zipcode" value="">
+                                    <input type="text" class="form-control" id="zip" name="zipcode" value="">
                                 </div>
                                 <div class="form-group">
                                     <label for="user_city">City</label>
-                                    <input type="text" class="form-control" id="user_city" name="city" value="">
+                                    <input type="text" class="form-control" id="city" name="city" value="">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="user_country">Country</label>
-                                <input type="text" class="form-control" id="user_country" placeholder="">
-                            </div>
+                            <a href="confirmation.php" class="btn btn-main mt-20">Place Order</a>
                         </form>
-                    </div>
-                    <div class="block">
-                        <h4 class="widget-title">Payment Method</h4>
-                        <p>Credit Cart Details (Secure payment)</p>
-                        <div class="checkout-product-details">
-                            <div class="payment">
-                                <div class="card-details">
-                                    <form class="checkout-form">
-                                        <div class="form-group">
-                                            <label for="card-number">Card Number <span class="required">*</span></label>
-                                            <input id="card-number" class="form-control" type="tel"
-                                                   placeholder="•••• •••• •••• ••••">
-                                        </div>
-                                        <div class="form-group half-width padding-right">
-                                            <label for="card-expiry">Expiry (MM/YY) <span
-                                                        class="required">*</span></label>
-                                            <input id="card-expiry" class="form-control" type="tel"
-                                                   placeholder="MM / YY">
-                                        </div>
-                                        <div class="form-group half-width padding-left">
-                                            <label for="card-cvc">Card Code <span class="required">*</span></label>
-                                            <input id="card-cvc" class="form-control" type="tel" maxlength="4"
-                                                   placeholder="CVC">
-                                        </div>
-                                        <a href="confirmation.php" class="btn btn-main mt-20">Place Order</a>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -245,6 +220,10 @@ Essential Scripts
 
 <!-- Main Js File -->
 <script src="js/script.js"></script>
+<script src="js/adress.js"></script>
+<script>
+    fillAdress();
+</script>
 
 
 </body>
