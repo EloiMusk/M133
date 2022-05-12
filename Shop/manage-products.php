@@ -198,6 +198,8 @@ $categories = getAllCategory();
         </div>
     </div>
 </div>
+<?php include 'php/components/footer/footer.php' ?>
+
 <!--    Cutom Javascript-->
 <script src="js/manage-products.js"></script>
 <script src="js/svg-morpheus.js"></script>

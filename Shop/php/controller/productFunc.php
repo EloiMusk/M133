@@ -72,4 +72,14 @@ function updateProduct()
     ));
 }
 
+function getAllProductsByCategory($categoryId)
+{
+    $dblink = getDB();
+    $sql = 'SELECT * FROM product WHERE categoryId=?;';
+    $sth = $dblink->prepare($sql);
+    $sth->execute(array($categoryId));
+    $allProducts = $sth->fetchAll(PDO::FETCH_ASSOC);
+    return $allProducts;
+}
+
 ?>

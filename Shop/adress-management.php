@@ -72,7 +72,7 @@ if (!isset($_SESSION['user'])) {
                             <button onclick="updateAdress()" class="btn btn-primary">Update</button>
                         </div>
                     </form>
-                        <!--    Cutom Javascript-->
+                    <?php include 'php/components/footer/footer.php' ?>
 </body>
 <script src="js/adress.js" lang="js">
 </script>
