@@ -141,6 +141,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/php/controller/productFunc.php';
                     if (isset($_SESSION['user']) && $_SESSION['user']['role'] == 1) {
                         echo '<li class="dropdown nav-item">
                         <a href="manage-products.php">Manage Products</a>
+                        <a href="manage-orders.php">Manage Orders</a>                      
                     </li>';
                     }
                     ?>

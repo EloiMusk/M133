@@ -52,4 +52,17 @@ function getUserByUsername($user) {
         return false;
     }
 }
+
+function getUserById($id) {
+    $db = getDB();
+    $stmt = $db->prepare("SELECT * FROM user WHERE id = :id");
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if (count($result) > 0) {
+        return $result[0];
+    } else {
+        return false;
+    }
+}
 ?>
