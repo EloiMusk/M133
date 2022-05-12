@@ -10,9 +10,10 @@ if (!isset($_SESSION['cart'])) {
 include_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'php' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'getDB.php';
 // add order to database
 $db = getDB();
-$stmt = $db->prepare("INSERT INTO `order` (user_id, adress_id, products, timestamp) VALUES (:user_id, :adress_id, :products, NOW())");
+$stmt = $db->prepare("INSERT INTO `order` (user_id, adress_id, products, timestamp, total) VALUES (:user_id, :adress_id, :products, NOW(), :total)");
 $stmt->bindParam(':user_id', $_SESSION['user']['id']);
 $stmt->bindParam(':adress_id', $_SESSION['user']['adress_id']);
+$stmt->bindParam(':total', $_SESSION['total']);
 $str1 = '';
 foreach ($_SESSION['cart'] as $productId => $quantity) {
     $str1 = $str1 . '{ "id": ' . $productId . ', "quantity": ' . $_SESSION['cart'][$productId]['quantity'] . ' },';

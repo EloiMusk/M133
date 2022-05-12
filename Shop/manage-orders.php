@@ -59,6 +59,7 @@ if (!isset($_SESSION['user'])) {
                             <th>Order ID</th>
                             <th>Customer</th>
                             <th>Date</th>
+                            <th>Total</th>
                             </thead>
                             <tbody>
                             <?php
@@ -73,6 +74,7 @@ if (!isset($_SESSION['user'])) {
                                 $user = getUserById($order['user_id']);
                                 echo "<td>" . $user['username'] . "</td>";
                                 echo "<td>" . $order['timestamp'] . "</td>";
+                                echo "<td>" . number_format($order['total'], 2, '.', '\'') . " $</td>";
                                 echo "</tr>";
                             }
                             ?>
